@@ -10,7 +10,7 @@ type MenuItems = {
 	linkURL:string
 };
 
-class Directory extends React.Component<Object, any> {
+class Directory extends React.Component<object, any> {
 	constructor(props:object) {
 		super(props);
 
