@@ -1,13 +1,13 @@
 import React from 'react';
-import './Directory.scss';
 import MenuItem from '../menuItem/MenuItem';
+import './Directory.scss';
 
 type MenuItems = {
 	title:string;
 	imageURL:string;
 	id:number;
 	size:string;
-	linkURL:string
+	linkURL:string;
 };
 
 class Directory extends React.Component<object, any> {
