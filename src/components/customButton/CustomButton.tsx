@@ -3,7 +3,7 @@ import firebase from '../../firebase/firebaseUtils';
 import './CustomButton.scss';
 
 type CustomButtonProps = {
-	type?:'submit';
+	type?:'submit' | 'button';
 	children:React.ReactNode;
 	isGoogleLogIn?:boolean;
 	onClick?:() => Promise<firebase.auth.UserCredential>;
