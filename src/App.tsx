@@ -29,7 +29,7 @@ class App extends React.Component<object, any> {
 							id: snapshot.id,
 							...snapshot.data()
 						}
-					}, () => console.log(this.state));
+					});
 				});
 			} else {
 				this.setState({user: null});
