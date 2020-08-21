@@ -1,12 +1,12 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import FormInput from '../../components/formInput/FormInput';
 import CustomButton from '../../components/customButton/CustomButton';
 import { logInWithGoogle } from '../../firebase/firebaseUtils';
 import './LogIn.scss';
 
 class LogIn extends React.Component<object, any> {
-	constructor(props:object) {
-		super(props);
+	constructor() {
+		super({});
 
 		this.state = {
 			email: '',
@@ -14,7 +14,7 @@ class LogIn extends React.Component<object, any> {
 		};
 	};
 
-	handleChange = (event:ChangeEvent<HTMLInputElement>) => {
+	handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		this.setState({[name]: value});
 	};
@@ -36,14 +36,16 @@ class LogIn extends React.Component<object, any> {
 						type='email'
 						value={this.state.email}
 						handleChange={this.handleChange}
-						required />
+						required
+					/>
 					<FormInput
 						name='password'
 						label='password'
 						type='password'
 						value={this.state.password}
 						handleChange={this.handleChange}
-						required />
+						required
+					/>
 					<div className='buttons'>
 						<CustomButton type='submit'>Log In</CustomButton>
 						<CustomButton onClick={logInWithGoogle} isGoogleLogIn>Log In with Google</CustomButton>
