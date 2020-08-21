@@ -1,14 +1,17 @@
 import React from 'react';
+import firebase from '../../firebase/firebaseUtils';
 import './CustomButton.scss';
 
 type CustomButtonProps = {
+	type?:'submit';
 	children:React.ReactNode;
-	type:'submit';
+	isGoogleLogIn?:boolean;
+	onClick?:() => Promise<firebase.auth.UserCredential>;
 };
 
-const CustomButton = ({ children, ...otherProps }:CustomButtonProps) => {
+const CustomButton = ({ children, isGoogleLogIn, ...otherProps }:CustomButtonProps) => {
 	return (
-		<button className='custom-button' {...otherProps}>
+		<button className={`${isGoogleLogIn ? 'google-log-in' : ''} custom-button`} {...otherProps}>
 			{children}
 		</button>
 	);

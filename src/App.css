@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	padding: 20px 60px;
 	font-family: 'Open Sans Condensed', sans-serif;
