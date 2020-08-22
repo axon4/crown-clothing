@@ -1,6 +1,8 @@
+import { userActionConsts } from './userActionConsts';
+
 export const setUser = user => {
 	return {
-		type: 'SET_USER',
+		type: userActionConsts.SET_USER,
 		payload: user
 	};
 };

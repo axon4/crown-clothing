@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import Header from './components/header/Header';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import AuthPage from './pages/auth/AuthPage';
@@ -43,10 +43,18 @@ class App extends React.Component<any> {
 				<Switch>
 					<Route exact path='/' component={HomePage} />
 					<Route path='/shop' component={ShopPage} />
-					<Route path='/login' component={AuthPage} />
+					<Route exact path='/login' render={() => {
+						return this.props.user ? <Redirect to='/' /> : <AuthPage />
+					}} />
 				</Switch>
 			</Fragment>
 		);
+	};
+};
+
+const mapStateToProps = ({ user }:{ user:any }) => {
+	return {
+		user: user.user
 	};
 };
 
@@ -56,4 +64,4 @@ const mapDispatchToProps = (dispatch:Dispatch) => {
 	};
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
