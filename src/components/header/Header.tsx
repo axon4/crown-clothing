@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/firebaseUtils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { auth } from '../../firebase/firebaseUtils';
+import Cart from '../cart/Cart';
+import CartDropdown from '../cart-dropdown/CartDropdown';
 import './Header.scss';
 
-const Header = ({ user }:{ user:any }) => {
+type HeaderProps = {
+	user:any,
+	hidden:boolean
+};
+
+const Header = ({ user, hidden }:HeaderProps) => {
 	return (
 		<nav>
 			<Link to='/' className='logo-container'>
@@ -23,15 +30,24 @@ const Header = ({ user }:{ user:any }) => {
 					? <div className='option' onClick={() => auth.signOut()}>LOG OUT</div>
 					: <Link to='/login' className='option'>LOG IN</Link>
 				}
+				<Cart />
 			</div>
+			{
+				hidden ? null : <CartDropdown />
+			}
 		</nav>
 	);
 };
 
-const mapStateToProps = (state:any) => {
-	console.log('State', state);
+type HeaderStateMap = {
+	user:{user:any},
+	cartDropdown: {hidden:boolean}
+};
+
+const mapStateToProps = ({ user: { user }, cartDropdown: { hidden } }:HeaderStateMap) => {
 	return {
-		user: state.user.user
+		user,
+		hidden
 	};
 };
 
