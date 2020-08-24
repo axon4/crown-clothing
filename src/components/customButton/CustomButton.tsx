@@ -6,12 +6,18 @@ type CustomButtonProps = {
 	type?:'submit' | 'button';
 	children:React.ReactNode;
 	isGoogleLogIn?:boolean;
+	inverted?:boolean;
 	onClick?:() => Promise<firebase.auth.UserCredential>;
 };
 
-const CustomButton = ({ children, isGoogleLogIn, ...otherProps }:CustomButtonProps) => {
+const CustomButton = ({ children, isGoogleLogIn, inverted, ...otherProps }:CustomButtonProps) => {
 	return (
-		<button className={`${isGoogleLogIn ? 'google-log-in' : ''} custom-button`} {...otherProps}>
+		<button className={
+				`${isGoogleLogIn ? 'google-log-in' : ''}
+				${inverted ? 'inverted' : ''}
+				custom-button`
+				}
+			{...otherProps}>
 			{children}
 		</button>
 	);

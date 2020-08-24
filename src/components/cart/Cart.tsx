@@ -1,27 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { ReactComponent as Icon } from '../../assets/cart.svg';
-import { toggleCartDropdownHidden } from '../../redux/cartDropdown/cartDropdownActions';
+import CustomButton from '../customButton/CustomButton';
 import './Cart.scss';
 
-type CartProp = {
-	toggleCartDropdownHidden:() => object
-};
-
-const Cart = ({ toggleCartDropdownHidden }:CartProp) => {
+const Cart = () => {
 	return (
-		<div className='cart' onClick={toggleCartDropdownHidden} >
-			<Icon className='cart-icon' />
-			<span id='item-count'>0</span>
+		<div className='cart-'>
+			<div className='cart-items' />
+			<CustomButton>CHECKOUT</CustomButton>
 		</div>
 	);
 };
 
-const mapDispatchToProps = (dispatch:Dispatch) => {
-	return {
-		toggleCartDropdownHidden: () => dispatch(toggleCartDropdownHidden())
-	};
-};
-
-export default connect(null, mapDispatchToProps)(Cart);
+export default Cart;
