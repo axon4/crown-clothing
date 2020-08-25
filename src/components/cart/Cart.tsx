@@ -1,12 +1,10 @@
 import React from 'react';
+import { RootState } from '../../redux/rootReducer';
 import { connect } from 'react-redux';
 import CustomButton from '../customButton/CustomButton';
 import CartItem from '../cartItem/CartItem';
+import { selectCartItems } from '../../redux/cart/cartSelectors'
 import './Cart.scss';
-
-type CartItems = {
-	cart:{cartItems:object}
-};
 
 const Cart = ({ cartItems }:{ cartItems:any }) => {
 	return (
@@ -21,8 +19,8 @@ const Cart = ({ cartItems }:{ cartItems:any }) => {
 	);
 };
 
-const mapStateToProps = ({ cart: { cartItems } }:CartItems) => {
-	return {cartItems};
+const mapStateToProps = (state:RootState) => {
+	return {cartItems: selectCartItems(state)};
 };
 
 export default connect(mapStateToProps)(Cart);
