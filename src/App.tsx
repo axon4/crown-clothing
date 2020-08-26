@@ -1,12 +1,17 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { RootState } from './redux/rootReducer';
 import { Dispatch } from 'redux';
 import Header from './components/header/Header';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import AuthPage from './pages/auth/AuthPage';
+import CheckoutPage from './pages/checkout/CheckoutPage';
 import firebase, { auth, createUserProfileDocument } from './firebase/firebaseUtils';
+import { selectUser } from './redux/user/userSelectors';
+import { createStructuredSelector } from 'reselect';
+import { User } from './redux/user/userSelectors';
 import { setUser } from './redux/user/userActions';
 import './App.css';
 
@@ -46,17 +51,16 @@ class App extends React.Component<any> {
 					<Route exact path='/login' render={() => {
 						return this.props.user ? <Redirect to='/' /> : <AuthPage />
 					}} />
+					<Route exact path='/checkout' component={CheckoutPage} />
 				</Switch>
 			</Fragment>
 		);
 	};
 };
 
-const mapStateToProps = ({ user }:{ user:any }) => {
-	return {
-		user: user.user
-	};
-};
+const mapStateToProps = createStructuredSelector<RootState, User>({
+	user: selectUser
+});
 
 const mapDispatchToProps = (dispatch:Dispatch) => {
 	return {

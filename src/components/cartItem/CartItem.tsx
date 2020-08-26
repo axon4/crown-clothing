@@ -1,7 +1,7 @@
 import React from 'react';
 import './CartItem.scss';
 
-type CartItem = {
+export type CartItem = {
 	item:{
 		name:string,
 		imageURL:string,
@@ -16,7 +16,7 @@ const CartItem = ({ item: { name, imageURL, price, quantity } }:CartItem) => {
 			<img src={imageURL} alt={`Cart Item: (${name})`} />
 			<div className='item-details'>
 				<span className='name'>{name}</span>
-				<span className='price'>{quantity} × £{price}</span>
+				<span className='price'>{quantity} &#10005; £{price}</span>
 			</div>
 		</div>
 	);

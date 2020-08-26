@@ -1,4 +1,4 @@
-.cart- {
+.cart {
 	position: absolute;
 	width: 240px;
 	height: 340px;
@@ -11,11 +11,17 @@
 	right: 40px;
 	z-index: 5;
 
+	.empty-cart-message {
+		margin: 50px auto;
+		font-size: 18px;
+	}
+
 	.cart-items {
 		height: 240px;
 		display: flex;
 		flex-direction: column;
 		overflow: scroll;
+		overflow-x: hidden;
 	}
 
 	button {

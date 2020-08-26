@@ -7,7 +7,7 @@ type CustomButtonProps = {
 	children:React.ReactNode;
 	isGoogleLogIn?:boolean;
 	inverted?:boolean;
-	onClick?:() => Promise<firebase.auth.UserCredential>;
+	onClick?:() => Promise<firebase.auth.UserCredential> | void;
 };
 
 const CustomButton = ({ children, isGoogleLogIn, inverted, ...otherProps }:CustomButtonProps) => {
