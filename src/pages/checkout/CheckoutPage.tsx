@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import CheckoutItem from '../../components/checkoutItem/CheckoutItem';
+import StripeButton from '../../components/stripeButton/StripeButton';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems, CartItems } from '../../redux/cart/cartSelectors';
 import { selectCartTotal, CartTotal } from '../../redux/cart/cartSelectors';
@@ -28,9 +29,13 @@ const CheckoutPage = ({ cartItems, total }:CartItems | CartTotal) => {
 				</div>
 			</div>
 			{cartItems.map((cartItem:any) => <CheckoutItem key={cartItem.id} item={cartItem} />)}
-			<div className='total'>
-				<span>TOTAL: £{total}</span>
+			<div className='total'>TOTAL: £{total}</div>
+			<div className='test-warning'>
+				PLEASE USE THE FOLLOWING TEST CARD FOR PAYMENTS:
+				<br />
+				4242 4242 4242 4242 | Expiry: 02/42 | CVC: 424
 			</div>
+			<StripeButton price={total} />
 		</div>
 	);
 };
