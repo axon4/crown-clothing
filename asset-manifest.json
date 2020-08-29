@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/ecommerce-store/static/css/main.3b7e262c.chunk.css",
-    "main.js": "/ecommerce-store/static/js/main.8da92e6b.chunk.js",
-    "main.js.map": "/ecommerce-store/static/js/main.8da92e6b.chunk.js.map",
-    "runtime-main.js": "/ecommerce-store/static/js/runtime-main.570ce59b.js",
-    "runtime-main.js.map": "/ecommerce-store/static/js/runtime-main.570ce59b.js.map",
-    "static/js/2.0993fb1a.chunk.js": "/ecommerce-store/static/js/2.0993fb1a.chunk.js",
-    "static/js/2.0993fb1a.chunk.js.map": "/ecommerce-store/static/js/2.0993fb1a.chunk.js.map",
-    "index.html": "/ecommerce-store/index.html",
-    "precache-manifest.be9c08243f99422ecda4ed4fd9e222a9.js": "/ecommerce-store/precache-manifest.be9c08243f99422ecda4ed4fd9e222a9.js",
-    "service-worker.js": "/ecommerce-store/service-worker.js",
-    "static/css/main.3b7e262c.chunk.css.map": "/ecommerce-store/static/css/main.3b7e262c.chunk.css.map",
-    "static/js/2.0993fb1a.chunk.js.LICENSE.txt": "/ecommerce-store/static/js/2.0993fb1a.chunk.js.LICENSE.txt",
-    "static/media/cart.30f07071.svg": "/ecommerce-store/static/media/cart.30f07071.svg",
-    "static/media/crown.ed28accb.svg": "/ecommerce-store/static/media/crown.ed28accb.svg"
+    "main.css": "/static/css/main.3b7e262c.chunk.css",
+    "main.js": "/static/js/main.8da92e6b.chunk.js",
+    "main.js.map": "/static/js/main.8da92e6b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ee379c9f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ee379c9f.js.map",
+    "static/js/2.d665651f.chunk.js": "/static/js/2.d665651f.chunk.js",
+    "static/js/2.d665651f.chunk.js.map": "/static/js/2.d665651f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.801e7b6e5c7b36743d35be2e5e01fd80.js": "/precache-manifest.801e7b6e5c7b36743d35be2e5e01fd80.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.3b7e262c.chunk.css.map": "/static/css/main.3b7e262c.chunk.css.map",
+    "static/js/2.d665651f.chunk.js.LICENSE.txt": "/static/js/2.d665651f.chunk.js.LICENSE.txt",
+    "static/media/cart.30f07071.svg": "/static/media/cart.30f07071.svg",
+    "static/media/crown.ed28accb.svg": "/static/media/crown.ed28accb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.570ce59b.js",
-    "static/js/2.0993fb1a.chunk.js",
+    "static/js/runtime-main.ee379c9f.js",
+    "static/js/2.d665651f.chunk.js",
     "static/css/main.3b7e262c.chunk.css",
     "static/js/main.8da92e6b.chunk.js"
   ]
