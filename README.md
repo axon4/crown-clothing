@@ -6,3 +6,13 @@
   * React Router for routing
   * Redux Persist for local state storage and rehydration
   * Stripe for processing payments
+
+## Stack
+
+* HTML
+* SCSS
+* JavaScript
+* TypeScript React
+* Redux
+* Firebase
+* Stripe
