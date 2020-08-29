@@ -47,6 +47,8 @@ class App extends React.Component<any> {
 				<Header />
 				<Switch>
 					<Route exact path='/' component={HomePage} />
+					{/* GitHub Pages Redirect */}
+					<Route exact path='/ecommerce-store' render={() => <Redirect to='/' />} />
 					<Route path='/shop' component={ShopPage} />
 					<Route exact path='/login' render={() => {
 						return this.props.user ? <Redirect to='/' /> : <AuthPage />
