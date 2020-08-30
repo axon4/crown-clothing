@@ -11,6 +11,7 @@
 
 * HTML
 * SCSS
+* CSS-in-JS Styled Components
 * JavaScript
 * TypeScript React
 * Redux
