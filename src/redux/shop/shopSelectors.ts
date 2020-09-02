@@ -13,10 +13,10 @@ export type Collection = ReturnType<typeof selectCollections>;
 
 export const selectCollectionsForPreview = createSelector(
 	[selectCollections],
-	collections => Object.keys(collections).map(key => collections[key])
+	collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 );
 
 export const selectCollection = memoize((collectionURLParam:any) => createSelector(
 	[selectCollections],
-	collections => collections[collectionURLParam]
+	collections => collections ? collections[collectionURLParam] : null
 ));
