@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { persistStore } from 'redux-persist';
 import rootReducer from './rootReducer';
 
-// eslint-disable-next-line
-const middlewares = new Array();
+const middlewares = [thunk];
 if (process.env.NODE_ENV === 'development') {
 	middlewares.push(logger);
 };

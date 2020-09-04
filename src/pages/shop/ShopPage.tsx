@@ -1,69 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import WithSpinner from '../../components/withSpinner/WithSpinner';
-import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebaseUtils';
+import { ThunkDispatch } from 'redux-thunk';
 import { Route } from 'react-router-dom';
-import CollectionsOverview from '../../components/collectionsOverview/CollectionsOverview';
-import CollectionPage from '../collection/CollectionPage';
-import { updateCollections } from '../../redux/shop/shopActions';
-
-const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
-const CollectionPageWithSpinner = WithSpinner(CollectionPage);
+import CollectionsOverviewContainer from '../../components/collectionsOverview/CollectionsOverviewContainer';
+import CollectionPageContainer from '../collection/CollectionPageContainer';
+import { fetchCollectionsAsync } from '../../redux/shop/shopActions';
 
 class ShopPage extends React.Component<any> {
-	state = {
-		loading: true
-	};
+	componentDidMount() {
+		const { fetchCollectionsAsync } = this.props;
 
-	unsubscribeFromSnapshot!:() => void;
-
-	componentDidMount() {;
-		const { updateCollections } = this.props;
-		const collectionReference = firestore.collection('collections');
-
-		// Observer
-		// this.unsubscribeFromSnapshot = collectionReference.onSnapshot(async snapshot => {
-		// 	const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-		// 	updateCollections(collectionsMap);
-		// 	this.setState({loading: false});
-		// });
-
-		// Promise
-		collectionReference.get().then(snapshot => {
-			const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-			updateCollections(collectionsMap);
-			this.setState({loading: false});
-		});
-
-		// REST
-		// const collectionsMap = fetch(`https://firestore.googleapis.com/v1/projects/
-		// 	ecommerce-store/databases/(default)/documents/collections`)
-		// 		.then(response => response.json())
-		// 		.then(collections => console.log)
-		// 		.catch(error => console.log)
-		// 		.finally(() => console.log('Nest'));
+		fetchCollectionsAsync();
 	};
 	
 	render() {
-		const { loading } = this.state;
 		const { match } = this.props;
 
 		return (
 			<div className='shop-page'>
-				<Route exact path={`${match.path}`} render={props =>
-					<CollectionsOverviewWithSpinner isLoading={loading} {...props} />}
-				/>
-				<Route path={`${match.path}/:collectionID`} render={props =>
-				<CollectionPageWithSpinner isLoading={loading} {...props} />}
-				/>
+				<Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
+				<Route path={`${match.path}/:collectionID`} component={CollectionPageContainer} />
 			</div>
 		);
 	};
 };
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-	updateCollections: (collectionsMap:object) => dispatch(updateCollections(collectionsMap))
+const mapDispatchToProps = (dispatch:ThunkDispatch<any, any, any>) => ({
+	fetchCollectionsAsync: () => dispatch(fetchCollectionsAsync())
 });
 
 export default connect(null, mapDispatchToProps)(ShopPage);
