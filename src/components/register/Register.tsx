@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import FormInput from '../formInput/FormInput';
 import CustomButton from '../customButton/CustomButton';
-import { auth, createUserProfileDocument } from '../../firebase/firebaseUtils';
 import './Register.scss';
+import { register } from '../../redux/user/userActions';
+import { Dispatch } from 'redux';
 
-class Register extends React.Component<object, any> {
+class Register extends React.Component<any, any> {
 	constructor() {
 		super({});
 
@@ -18,11 +20,14 @@ class Register extends React.Component<object, any> {
 
 	handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
+		
 		this.setState({[name]: value});
 	};
 
 	handleSubmit = async (event:React.FormEvent) => {
 		event.preventDefault();
+
+		const { register } = this.props;
 		const { displayName, email, password, confirmPassword } = this.state;
 
 		if (password !== confirmPassword) {
@@ -31,19 +36,7 @@ class Register extends React.Component<object, any> {
 			return;
 		};
 
-		try {
-			const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-			await createUserProfileDocument(user, {displayName});
-			this.setState({
-				displayName: '',
-				email: '',
-				password: '',
-				confirmPassword: ''
-			});
-		} catch (error) {
-			console.log('Error Registering User:', error);
-		};
+		register({ displayName, email, password });
 	};
 
 	render() {
@@ -93,4 +86,8 @@ class Register extends React.Component<object, any> {
 	};
 };
 
-export default Register;
+const mapDispatchToProps = (dispatch:Dispatch) => ({
+	register: (userCredentials:any) => dispatch(register(userCredentials))
+});
+
+export default connect(null, mapDispatchToProps)(Register);

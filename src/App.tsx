@@ -8,11 +8,11 @@ import HomePage from './pages/homepage/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import AuthPage from './pages/auth/AuthPage';
 import CheckoutPage from './pages/checkout/CheckoutPage';
-import firebase, { auth, createUserProfileDocument } from './firebase/firebaseUtils';
+import firebase from './firebase/firebaseUtils';
 import { selectUser } from './redux/user/userSelectors';
 import { createStructuredSelector } from 'reselect';
 import { User } from './redux/user/userSelectors';
-import { setUser } from './redux/user/userActions';
+import { checkUserSession } from './redux/user/userActions';
 // Pushing Data to Firestore
 // import { addCollectionAndDocuments } from './firebase/firebaseUtils';
 // import { selectCollectionsForPreview } from './redux/shop/shopSelectors';
@@ -22,32 +22,20 @@ class App extends React.Component<any> {
 	unsubscribeFromAuth!:firebase.Unsubscribe;
 
 	componentDidMount() {
-		const { setUser } = this.props;
-		// const { setUser, collectionsArray } = this.props;
+		const { checkUserSession } = this.props;
 
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-			if (userAuth) {
-				const userReference = await createUserProfileDocument(userAuth);
+		checkUserSession();
 
-				userReference?.onSnapshot(snapshot => {
-					setUser({
-						id: snapshot.id,
-						...snapshot.data()
-					});
-				});
-			} else {
-				setUser(null);
-			};
+		// // Push Shop Data to Firestore
+		
+		// const { collectionsArray } = this.props;
 
-			// Push Shop Data to Firestore
+		// type FirestorePush = {
+		// 	title:string,
+		// 	items:Array<object>
+		// };
 
-			// type FirestorePush = {
-			// 	title:string,
-			// 	items:Array<object>
-			// };
-
-			// addCollectionAndDocuments('collections', collectionsArray.map(({ title, items }:FirestorePush) => ({ title, items })));
-		});
+		// addCollectionAndDocuments('collections', collectionsArray.map(({ title, items }:FirestorePush) => ({ title, items })));
 	};
 
 	componentWillUnmount() {
@@ -75,14 +63,12 @@ class App extends React.Component<any> {
 
 const mapStateToProps = createStructuredSelector<RootState, User>({ // Change 'User' type to 'any' if pushing shop data to Firestore
 	user: selectUser
-	// Prop for pushing shop data to Direstore
+	// Prop for pushing shop data to Firestore
 	// collectionsArray: selectCollectionsForPreview
 });
 
-const mapDispatchToProps = (dispatch:Dispatch) => {
-	return {
-		setUser: (user:any) => dispatch(setUser(user))
-	};
-};
+const mapDispatchToProps = (dispatch:Dispatch) => ({
+	checkUserSession: () => dispatch(checkUserSession())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

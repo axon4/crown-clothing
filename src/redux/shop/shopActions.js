@@ -1,5 +1,5 @@
 import ShopActionConsts from './shopActionConsts';
-import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebaseUtils';
+// import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebaseUtils';
 
 export const fetchCollections = () => ({
 	type: ShopActionConsts.FETCH_COLLECTIONS_PENDING
@@ -15,16 +15,18 @@ export const fetchCollectionsFailure = error => ({
 	payload: error
 });
 
-export const fetchCollectionsAsync = () => {
-	return dispatch => {
-		const collectionReference = firestore.collection('collections');
+// Redux Thunk
 
-		dispatch(fetchCollections());
+// export const fetchCollectionsAsync = () => {
+// 	return dispatch => {
+// 		const collectionReference = firestore.collection('collections');
 
-		collectionReference.get().then(snapshot => {
-			const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-			dispatch(fetchCollectionsSuccess(collectionsMap))
-		})
-			.catch(error => dispatch(fetchCollectionsFailure(error)));
-	};
-};
+// 		dispatch(fetchCollections());
+
+// 		collectionReference.get().then(snapshot => {
+// 			const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+// 			dispatch(fetchCollectionsSuccess(collectionsMap))
+// 		})
+// 			.catch(error => dispatch(fetchCollectionsFailure(error)));
+// 	};
+// };

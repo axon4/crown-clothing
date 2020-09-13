@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import FormInput from '../../components/formInput/FormInput';
 import CustomButton from '../../components/customButton/CustomButton';
-import { auth, logInWithGoogle } from '../../firebase/firebaseUtils';
+import { emailLogIn, googleLogIn } from '../../redux/user/userActions';
 import './LogIn.scss';
 
-class LogIn extends React.Component<object, any> {
+class LogIn extends React.Component<any, any> {
 	constructor() {
 		super({});
 
@@ -16,25 +18,22 @@ class LogIn extends React.Component<object, any> {
 
 	handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
+		
 		this.setState({[name]: value});
 	};
 
 	handleSubmit = async (event:React.FormEvent) => {
 		event.preventDefault();
-		const { email, password } = this.state;
 
-		try {
-			await auth.signInWithEmailAndPassword(email, password);
-			this.setState({
-				email: '',
-				password: ''
-			});
-		} catch (error) {
-			console.log('Error Logging In:', error);
-		};
+		const { email, password } = this.state;
+		const { emailLogIn } = this.props;
+
+		emailLogIn(email, password);
 	};
 
-	render () {
+	render() {
+		const { googleLogIn } = this.props;
+
 		return (
 			<div className='log-in'>
 				<h2>Log In</h2>
@@ -58,7 +57,7 @@ class LogIn extends React.Component<object, any> {
 					/>
 					<div className='buttons'>
 						<CustomButton type='submit'>Log In</CustomButton>
-						<CustomButton type='button' onClick={logInWithGoogle} isGoogleLogIn>Log In with Google</CustomButton>
+						<CustomButton type='button' onClick={googleLogIn} isGoogleLogIn>Log In with Google</CustomButton>
 					</div>
 				</form>
 			</div>
@@ -66,4 +65,9 @@ class LogIn extends React.Component<object, any> {
 	};
 };
 
-export default LogIn;
+const mapDispatchToProps = (dispatch:Dispatch) => ({
+	emailLogIn: (email:string, password:string) => dispatch(emailLogIn({email, password})),
+	googleLogIn: () => dispatch(googleLogIn())
+});
+
+export default connect(null, mapDispatchToProps)(LogIn);
