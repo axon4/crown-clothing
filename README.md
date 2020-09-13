@@ -1,7 +1,7 @@
 # ECommerce Store
 
 * Complete eCommerce store built with TypeScript React, as well as integrating:
-  * Redux for state management
+  * Redux Saga for state management
   * Firebase for authentication
   * React Router for routing
   * Redux Persist for local state storage and rehydration
@@ -13,7 +13,8 @@
 * SCSS
 * CSS-in-JS Styled Components
 * JavaScript
-* TypeScript React
-* Redux
+* TypeScript
+* React
+* Redux Saga
 * Firebase
 * Stripe
