@@ -1,5 +1,5 @@
 import CartActionConsts from './cartActionConsts';
-import { addItemToCart, subtractItemFromCart } from './cartUtils';
+import { addItemToCart, subtractItemFromCart } from '../../providers/cart/cartUtils';
 
 const INITIAL_STATE = {
 	hidden: true,

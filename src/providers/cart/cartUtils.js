@@ -25,3 +25,7 @@ export const subtractItemFromCart = (cartItems, cartItemToSubtract) => {
 			: cartItem;
 	});
 };
+
+export const getCartItemsCount = cartItems => {
+	return cartItems.reduce((cumulativeQuantity, cartItems) => cumulativeQuantity + cartItems.quantity, 0);
+};

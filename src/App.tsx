@@ -38,9 +38,9 @@ class App extends React.Component<any> {
 		// addCollectionAndDocuments('collections', collectionsArray.map(({ title, items }:FirestorePush) => ({ title, items })));
 	};
 
-	componentWillUnmount() {
-		this.unsubscribeFromAuth();
-	};
+	// componentWillUnmount() {
+	// 	this.unsubscribeFromAuth();
+	// };
 
 	render () {
 		return (

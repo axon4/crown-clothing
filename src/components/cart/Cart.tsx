@@ -1,15 +1,14 @@
-import React from 'react';
-import { RootState } from '../../redux/rootReducer';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
+import { CartContext } from '../../providers/cart/CartProvider';
 import CustomButton from '../customButton/CustomButton';
 import CartItem from '../cartItem/CartItem';
-import { createStructuredSelector } from 'reselect';
-import { selectCartItems, CartItems } from '../../redux/cart/cartSelectors'
+import { CartItems } from '../../redux/cart/cartSelectors'
 import './Cart.scss';
-import { toggleCartHidden } from '../../redux/cart/cartActions';
 
-const Cart = ({ cartItems, history, dispatch }:CartItems) => {
+const Cart = ({ history }:CartItems) => {
+	const { cartItems, toggleHidden } = useContext(CartContext);
+
 	return (
 		<div className='cart'>
 			<div className='cart-items'>
@@ -22,7 +21,7 @@ const Cart = ({ cartItems, history, dispatch }:CartItems) => {
 			</div>
 			<CustomButton onClick={() => {
 					history.push('/checkout');
-					dispatch(toggleCartHidden());
+					toggleHidden();
 				}}>
 				CHECKOUT
 			</CustomButton>
@@ -30,8 +29,4 @@ const Cart = ({ cartItems, history, dispatch }:CartItems) => {
 	);
 };
 
-const mapStateToProps = createStructuredSelector<RootState, CartItems>({
-	cartItems: selectCartItems
-});
-
-export default withRouter(connect(mapStateToProps)(Cart));
+export default withRouter(Cart);
