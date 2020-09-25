@@ -12,7 +12,9 @@ type ShopPageProps = {
 };
 
 const ShopPage = ({ fetchCollections, match }:ShopPageProps) => {
-	useEffect(() => fetchCollections(), [fetchCollections]);
+	useEffect(() => {
+		fetchCollections();
+	}, [fetchCollections]);
 
 	return (
 		<div className='shop-page'>
