@@ -20,6 +20,13 @@
 		width: 80%;
 		display: none;
 		opacity: 0.7;
+
+		@media screen and (max-width: 800px) {
+			padding: 0 10px;
+			min-width: unset;
+			display: block;
+			opacity: 0.9;
+		}
 	}
 
 	&:hover {
@@ -47,6 +54,20 @@
 
 		.price {
 			width: 10%;
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		width: 40vw;
+
+		&:hover {
+			.image {
+				opacity: unset;
+			}
+	
+			.custom-button {
+				opacity: unset;
+			}
 		}
 	}
 }
