@@ -41,7 +41,7 @@ const Register = ({ register }:Registrations) => {
 	return (
 		<div className='register'>
 			<h2 className='title'>Register</h2>
-			<span>Register with Email and Password</span>
+			<span>...with Email and Password</span>
 			<form className='registration-form' onSubmit={handleSubmit}>
 				<FormInput
 					name='displayName'

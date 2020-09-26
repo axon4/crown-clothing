@@ -32,7 +32,7 @@ const LogIn = ({ emailLogIn, googleLogIn }:LogIns) => {
 	return (
 		<div className='log-in'>
 			<h2>Log In</h2>
-			<span>Log in with email and password</span>
+			<span>...with Google/Email and Password</span>
 			<form onSubmit={handleSubmit}>
 				<FormInput
 					name='email'
