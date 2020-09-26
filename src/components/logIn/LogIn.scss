@@ -11,4 +11,21 @@
 		display: flex;
 		justify-content: space-between;
 	}
+
+	@media screen and (max-width: 800px) {
+		width: 100%;
+
+		.buttons {
+			justify-content: center;
+
+			.custom-button {
+				transform: scale(0.90);
+			}
+	
+			.custom-button:last-of-type {
+				font-size: 11.8px;
+			}
+		}
+
+	}
 }
