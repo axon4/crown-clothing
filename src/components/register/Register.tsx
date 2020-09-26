@@ -75,7 +75,9 @@ const Register = ({ register }:Registrations) => {
 					handleChange={handleChange}
 					required
 				/>
+				<div className='buttons'>
 				<CustomButton type='submit'>REGISTER</CustomButton>
+				</div>
 			</form>
 		</div>
 	);
