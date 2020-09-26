@@ -26,6 +26,14 @@ export const subtractItemFromCart = (cartItems, cartItemToSubtract) => {
 	});
 };
 
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+	return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id);
+};
+
 export const getCartItemsCount = cartItems => {
 	return cartItems.reduce((cumulativeQuantity, cartItems) => cumulativeQuantity + cartItems.quantity, 0);
+};
+
+export const getCartTotal = cartItems => {
+	return cartItems.reduce((cumulativeQuantity, cartItem) => cumulativeQuantity + cartItem.quantity * cartItem.price, 0);
 };

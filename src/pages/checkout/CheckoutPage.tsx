@@ -1,14 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { RootState } from '../../redux/rootReducer';
+import React, { useContext } from 'react';
 import CheckoutItem from '../../components/checkoutItem/CheckoutItem';
 import StripeButton from '../../components/stripeButton/StripeButton';
-import { createStructuredSelector } from 'reselect';
-import { selectCartItems, CartItems } from '../../redux/cart/cartSelectors';
-import { selectCartTotal, CartTotal } from '../../redux/cart/cartSelectors';
+import { CartContext } from '../../providers/cart/CartProvider';
 import './CheckoutPage.scss';
 
-const CheckoutPage = ({ cartItems, total }:CartItems | CartTotal) => {
+const CheckoutPage = () => {
+	const { cartItems, cartTotal } = useContext(CartContext);
+	
 	return (
 		<div className='checkout-page'>
 			<div className='checkout-header'>
@@ -29,20 +27,15 @@ const CheckoutPage = ({ cartItems, total }:CartItems | CartTotal) => {
 				</div>
 			</div>
 			{cartItems.map((cartItem:any) => <CheckoutItem key={cartItem.id} item={cartItem} />)}
-			<div className='total'>TOTAL: £{total}</div>
+			<div className='total'>TOTAL: £{cartTotal}</div>
 			<div className='test-warning'>
 				PLEASE USE THE FOLLOWING TEST CARD FOR PAYMENTS:
 				<br />
 				4242 4242 4242 4242 | Expiry: 02/42 | CVC: 424
 			</div>
-			<StripeButton price={total} />
+			<StripeButton price={cartTotal} />
 		</div>
 	);
 };
 
-const mapStateToProps = createStructuredSelector<RootState, CartItems>({
-	cartItems: selectCartItems,
-	total: selectCartTotal
-});
-
-export default connect(mapStateToProps)(CheckoutPage);
+export default CheckoutPage;
