@@ -6,6 +6,7 @@ import CartProvider from './providers/cart/CartProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
+import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 ReactDOM.render(
@@ -19,3 +20,5 @@ ReactDOM.render(
 		</CartProvider>
 	</Provider>
 , document.getElementById('root'));
+
+serviceWorker.register();
