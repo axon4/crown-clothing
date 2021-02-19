@@ -1,67 +1,66 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import FormInput from '../../components/formInput/FormInput';
+import FormInPut from '../formInPut/FormInPut';
 import CustomButton from '../../components/customButton/CustomButton';
-import { emailLogIn, googleLogIn } from '../../redux/user/userActions';
+import { eMailLogIn, GoogleLogIn } from '../../redux/user/userActions';
 import './LogIn.scss';
 
 type LogIns = {
-	emailLogIn:(email:string, password:string) => any,
-	googleLogIn:() => any
+	eMailLogIn: (eMail: string, passWord: string) => any,
+	GoogleLogIn: () => any
 };
 
-const LogIn = ({ emailLogIn, googleLogIn }:LogIns) => {
-	const [logInDetails, setLogInDetails] = useState({
-		email: '', password: ''
-	});
-	const { email, password } = logInDetails;
+const LogIn = ({ eMailLogIn, GoogleLogIn }: LogIns) => {
+	const [ logInDetails, setLogInDetails ] = useState({eMail: '', passWord: ''});
 
-	const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+	const { eMail, passWord } = logInDetails;
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
-		
+
 		setLogInDetails({...logInDetails, [name]: value});
 	};
 
-	const handleSubmit = async (event:React.FormEvent) => {
+	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 
-		emailLogIn(email, password);
+		eMailLogIn(eMail, passWord);
 	};
 
 	return (
 		<div className='log-in'>
-			<h2>Log In</h2>
-			<span>...with Google/Email and Password</span>
+			<h2>Log-In</h2>
+			<span>...with Google / EMail/PassWord</span>
 			<form onSubmit={handleSubmit}>
-				<FormInput
-					name='email'
-					label='email'
+				<FormInPut
+					name='eMail'
+					label='eMail'
 					type='email'
-					value={email}
+					value={eMail}
 					handleChange={handleChange}
 					required
 				/>
-				<FormInput
-					name='password'
-					label='password'
+				<FormInPut
+					name='passWord'
+					label='passWord'
 					type='password'
-					value={password}
+					value={passWord}
 					handleChange={handleChange}
 					required
 				/>
 				<div className='buttons'>
-					<CustomButton type='submit'>Log In</CustomButton>
-					<CustomButton type='button' onClick={googleLogIn} isGoogleLogIn>Log In with Google</CustomButton>
+					<CustomButton type='submit'>Log-In</CustomButton>
+					<CustomButton type='button' onClick={GoogleLogIn} isGoogleLogIn>Log-In with Google</CustomButton>
 				</div>
 			</form>
 		</div>
 	);
 };
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-	emailLogIn: (email:string, password:string) => dispatch(emailLogIn({email, password})),
-	googleLogIn: () => dispatch(googleLogIn())
+const mapDisPatchToProps = (disPatch: Dispatch) => ({
+	eMailLogIn: (eMail: string, passWord: string) => disPatch(eMailLogIn({ eMail, passWord })),
+	GoogleLogIn: () => disPatch(GoogleLogIn())
 });
 
-export default connect(null, mapDispatchToProps)(LogIn);
+export default connect(null, mapDisPatchToProps)(LogIn);

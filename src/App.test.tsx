@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+import Application from './App';
 
 it('render', () => {
-	expect(shallow(<App />)).toMatchSnapshot();
+	expect(shallow(<Application />)).toMatchSnapshot();
 });

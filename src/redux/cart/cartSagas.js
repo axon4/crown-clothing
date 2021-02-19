@@ -1,5 +1,5 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import UserActionConsts from '../user/userActionConsts';
+import UserActionConstants from '../user/userActionConstants';
 import { clearCart } from './cartActions';
 
 export function* clearCartOnLogOut() {
@@ -7,7 +7,7 @@ export function* clearCartOnLogOut() {
 };
 
 export function* onLogOutSuccess() {
-	yield takeLatest(UserActionConsts.LOG_OUT_SUCCESS, clearCartOnLogOut);
+	yield takeLatest(UserActionConstants.LOG_OUT_SUCCESS, clearCartOnLogOut);
 };
 
 function* cartSagas() {

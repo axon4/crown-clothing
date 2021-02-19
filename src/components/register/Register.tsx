@@ -1,90 +1,90 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import FormInput from '../formInput/FormInput';
+import { connect } from 'react-redux';
+import FormInPut from '../formInPut/FormInPut';
 import CustomButton from '../customButton/CustomButton';
 import { register } from '../../redux/user/userActions';
 import './Register.scss';
 
 type Registrations = {
-	register:(registrationDetails:object) => any
+	register: (registrationDetails: object) => any;
 };
 
-const Register = ({ register }:Registrations) => {
-	const [registrationDetails, setRegistrationDetails] = useState({
+const Register = ({ register }: Registrations) => {
+	const [ registrationDetails, setRegistrationDetails ] = useState({
 		displayName: '',
-		email: '',
-		password: '',
-		confirmPassword: ''
+		eMail: '',
+		passWord: '',
+		confirmPassWord: ''
 	});
-	const { displayName, email, password, confirmPassword } = registrationDetails;
 
-	const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+	const { displayName, eMail, passWord, confirmPassWord } = registrationDetails;
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
-		
+
 		setRegistrationDetails({...registrationDetails, [name]: value});
 	};
 
-	const handleSubmit = async (event:React.FormEvent) => {
+	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 
-
-		if (password !== confirmPassword) {
-			alert('Passwords Don\'t Match!');
+		if (passWord !== confirmPassWord) {
+			alert('PassWords Don\'t Match');
 
 			return;
 		};
 
-		register({ displayName, email, password });
+		register({ displayName, eMail, passWord });
 	};
 
 	return (
 		<div className='register'>
 			<h2 className='title'>Register</h2>
-			<span>...with Email and Password</span>
+			<span>...with EMail and PassWord</span>
 			<form className='registration-form' onSubmit={handleSubmit}>
-				<FormInput
+				<FormInPut
 					name='displayName'
-					label='Name'
+					label='displayName'
 					type='text'
 					value={displayName}
 					handleChange={handleChange}
 					required
 				/>
-				<FormInput
-					name='email'
-					label='Email'
+				<FormInPut
+					name='eMail'
+					label='eMail'
 					type='email'
-					value={email}
+					value={eMail}
 					handleChange={handleChange}
 					required
 				/>
-				<FormInput
-					name='password'
-					label='Password'
+				<FormInPut
+					name='passWord'
+					label='passWord'
 					type='password'
-					value={password}
+					value={passWord}
 					handleChange={handleChange}
 					required
 				/>
-				<FormInput
-					name='confirmPassword'
-					label='Confirm Password'
+				<FormInPut
+					name='confirmPassWord'
+					label='confirmPassWord'
 					type='password'
-					value={confirmPassword}
+					value={confirmPassWord}
 					handleChange={handleChange}
 					required
 				/>
 				<div className='buttons'>
-				<CustomButton type='submit'>REGISTER</CustomButton>
+					<CustomButton type='submit'>REGISTER</CustomButton>
 				</div>
 			</form>
 		</div>
 	);
 };
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-	register: (userCredentials:any) => dispatch(register(userCredentials))
+const mapDisPatchToProps = (disPatch: Dispatch) => ({
+	register: (registrationDetails: any) => disPatch(register(registrationDetails))
 });
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(null, mapDisPatchToProps)(Register);

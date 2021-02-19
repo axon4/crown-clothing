@@ -1,4 +1,4 @@
-const UserActionConsts = {
+const UserActionConstants = {
 	// SET_CURRENT_USER: 'SET_CURRENT_USER',
 	EMAIL_LOG_IN_PENDING: 'EMAIL_LOG_IN_PENDING',
 	GOOGLE_LOG_IN_PENDING: 'GOOGLE_LOG_IN_PENDING',
@@ -13,4 +13,4 @@ const UserActionConsts = {
 	REGISTER_FAILURE: 'REGISTER_FAILURE'
 };
 
-export default UserActionConsts
+export default UserActionConstants;

@@ -6,7 +6,7 @@ const OptionContainerStyles = css`
 	cursor: pointer;
 `;
 
-export const HeaderNav = styled.nav`
+export const HeaderNavigation = styled.nav`
 	margin-bottom: 25px;
 	width: 100%;
 	height: 70px;

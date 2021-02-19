@@ -1,30 +1,30 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { addItemToCart, subtractItemFromCart, removeItemFromCart, getCartItemsCount, getCartTotal } from './cartUtils';
+import { addItemToCart, subTractItemFromCart, reMoveItemFromCart, getCartItemsCount, getCartTotal } from './cartUtilities';
 
-export const CartContext = createContext({
+export const CartConText = createContext({
 	hidden: true,
 	toggleHidden: () => {},
 	cartItems: [],
 	addItem: item => {},
-	subtractItem: item => {},
-	removeItem: item => {},
+	subTractItem: item => {},
+	reMoveItem: item => {},
 	cartItemsCount: 0,
 	cartTotal: 0
 });
 
 const CartProvider = ({ children }) => {
-	const [hidden, setHidden] = useState(true);
-	const [cartItems, setCartItems] = useState([]);
-	const [cartItemsCount, setCartItemsCount] = useState(0);
-	const [cartTotal, setCartTotal] = useState(0);
+	const [ hidden, setHidden ] = useState(true);
+	const [ cartItems, setCartItems ] = useState([]);
+	const [ cartItemsCount, setCartItemsCount ] = useState(0);
+	const [ cartTotal, setCartTotal ] = useState(0);
 
 	const toggleHidden = () => setHidden(!hidden);
 
 	const addItem = item => setCartItems(addItemToCart(cartItems, item));
 
-	const subtractItem = item => setCartItems(subtractItemFromCart(cartItems, item));
+	const subTractItem = item => setCartItems(subTractItemFromCart(cartItems, item));
 
-	const removeItem = item => setCartItems(removeItemFromCart(cartItems, item));
+	const reMoveItem = item => setCartItems(reMoveItemFromCart(cartItems, item));
 
 	useEffect(() => {
 		setCartItemsCount(getCartItemsCount(cartItems));
@@ -32,18 +32,20 @@ const CartProvider = ({ children }) => {
 	}, [cartItems]);
 
 	return (
-		<CartContext.Provider value={{
-			hidden,
-			toggleHidden,
-			cartItems,
-			cartItemsCount,
-			addItem,
-			subtractItem,
-			removeItem,
-			cartTotal
-		}}>
+		<CartConText.Provider 
+			value={{
+				hidden,
+				toggleHidden,
+				cartItems,
+				cartItemsCount,
+				addItem,
+				subTractItem,
+				reMoveItem,
+				cartTotal
+			}}
+		>
 			{children}
-		</CartContext.Provider>
+		</CartConText.Provider>
 	);
 };
 

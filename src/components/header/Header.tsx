@@ -1,22 +1,21 @@
 import React, { useContext } from 'react';
-import { connect } from 'react-redux';
-import { RootState } from '../../redux/rootReducer';
 import { Dispatch } from 'redux';
-import { CartContext } from '../../providers/cart/CartProvider';
-import { User } from '../../redux/user/userSelectors';
-import { ReactComponent as Logo } from '../../assets/crown.svg';
-import CartIcon from '../cartIcon/CartIcon';
-import Cart from '../cart/Cart';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectUser } from '../../redux/user/userSelectors';
+import Cart from '../cart/Cart';
+import CartIcon from '../cartIcon/CartIcon';
+import { CartConText } from '../../providers/cart/CartProvider';
+import { RootState } from '../../redux/rootReducer';
+import { User, selectUser } from '../../redux/user/userSelectors';
 import { logOut } from '../../redux/user/userActions';
-import { HeaderNav, LogoContainer, OptionsContainer, OptionLink } from './HeaderStyles';
+import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { HeaderNavigation, LogoContainer, OptionsContainer, OptionLink } from './HeaderStyles';
 
-const Header = ({ user, logOut }:User) => {
-	const { hidden } = useContext(CartContext);
+const Header = ({ user, logOut }: User) => {
+	const { hidden } = useContext(CartConText);
 
 	return (
-		<HeaderNav>
+		<HeaderNavigation>
 			<LogoContainer to='/'>
 				<Logo className='logo' />
 			</LogoContainer>
@@ -24,25 +23,25 @@ const Header = ({ user, logOut }:User) => {
 				<OptionLink to='/shop'>
 					SHOP
 				</OptionLink>
-				<OptionLink to='/contact'>
+				<OptionLink to='/conTact'>
 					CONTACT
 				</OptionLink>
 				{user
-					? <OptionLink as='div' onClick={logOut}>LOG OUT</OptionLink>
-					: <OptionLink to='/login'>LOG IN</OptionLink>}
+					? <OptionLink as='div' onClick={logOut}>LOG-OUT</OptionLink>
+					: <OptionLink to='/logIn'>LOG-IN</OptionLink>}
 				<CartIcon />
 			</OptionsContainer>
 			{hidden ? null : <Cart />}
-		</HeaderNav>
+		</HeaderNavigation>
 	);
 };
 
 const mapStateToProps = createStructuredSelector<RootState, User>({
-	user: selectUser,
+	user: selectUser
 });
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-	logOut: () => dispatch(logOut())
+const mapDisPatchToProps = (disPatch: Dispatch) => ({
+	logOut: () => disPatch(logOut())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDisPatchToProps)(Header);

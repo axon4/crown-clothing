@@ -1,40 +1,43 @@
-import CartActionConsts from './cartActionConsts';
-import { addItemToCart, subtractItemFromCart } from '../../providers/cart/cartUtils';
+import CartActionConstants from './cartActionConstants';
+import { addItemToCart, subTractItemFromCart } from '../../providers/cart/cartUtilities';
 
 const INITIAL_STATE = {
 	hidden: true,
 	cartItems: []
 };
 
-const cartReducer = (state=INITIAL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case CartActionConsts.TOGGLE_CART_HIDDEN:
+		case CartActionConstants.TOGGLE_CART_HIDDEN:
 			return {
 				...state,
 				hidden: !state.hidden
 			};
-		case CartActionConsts.ADD_ITEM:
+
+		case CartActionConstants.ADD_ITEM:
 			return {
 				...state,
-				cartItems: addItemToCart(state.cartItems, action.payload)
+				cartItems: addItemToCart(state.cartItems, action.payLoad)
 			};
-		case CartActionConsts.SUBTRACT_ITEM:
+
+		case CartActionConstants.SUBTRACT_ITEM:
 			return {
 				...state,
-				cartItems: subtractItemFromCart(state.cartItems, action.payload)
+				cartItems: subTractItemFromCart(state.cartItems, action.payLoad)
 			};
-		case CartActionConsts.REMOVE_ITEM_FROM_CART:
+
+		case CartActionConstants.REMOVE_ITEM_FROM_CART:
 			return {
 				...state,
-				cartItems: state.cartItems.filter(cartItem => {
-					return cartItem.id !== action.payload.id;
-				})
+				cartItems: state.cartItems.filter(cartItem => cartItem.ID !== action.payLoad.ID)
 			};
-		case CartActionConsts.CLEAR_CART:
+
+		case CartActionConstants.CLEAR_CART:
 			return {
 				...state,
 				cartItems: []
 			};
+
 		default:
 			return state;
 	};

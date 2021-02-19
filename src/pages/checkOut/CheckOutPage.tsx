@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import CheckoutItem from '../../components/checkoutItem/CheckoutItem';
+import { CartConText } from '../../providers/cart/CartProvider';
+import CheckOutItem from '../../components/checkOutItem/CheckOutItem';
 import StripeButton from '../../components/stripeButton/StripeButton';
-import { CartContext } from '../../providers/cart/CartProvider';
-import './CheckoutPage.scss';
+import './CheckOutPage.scss';
 
-const CheckoutPage = () => {
-	const { cartItems, cartTotal } = useContext(CartContext);
-	
+const CheckOutPage = () => {
+	const { cartItems, cartTotal } = useContext(CartConText);
+
 	return (
 		<div className='checkout-page'>
 			<div className='checkout-header'>
@@ -23,13 +23,13 @@ const CheckoutPage = () => {
 					<span>Price</span>
 				</div>
 				<div className='header-block'>
-					<span>Remove</span>
+					<span>ReMove</span>
 				</div>
 			</div>
-			{cartItems.map((cartItem:any) => <CheckoutItem key={cartItem.id} item={cartItem} />)}
-			<div className='total'>TOTAL: £{cartTotal}</div>
+			{cartItems.map((cartItem: any) => <CheckOutItem key={cartItem.ID} item={cartItem} />)}
+			<div className='total'>TOTAL: £{cartTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>
 			<div className='test-warning'>
-				PLEASE USE THE FOLLOWING TEST CARD FOR PAYMENTS:
+				USE THE FOLLOWING TEST-CARD FOR PAYMENTS:
 				<br />
 				4242 4242 4242 4242 | Expiry: 02/42 | CVC: 424
 			</div>
@@ -38,4 +38,4 @@ const CheckoutPage = () => {
 	);
 };
 
-export default CheckoutPage;
+export default CheckOutPage;

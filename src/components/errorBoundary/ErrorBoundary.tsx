@@ -1,25 +1,25 @@
 import React from 'react';
-import { ErrorImageContainer, ErrorImageOverlay, ErrorImageText } from './ErrorBoundaryStyles';
+import { ErrorImageContainer, ErrorImageOverLay, ErrorImageText } from './ErrorBoundaryStyles';
 
 export const ErrorMessage = () => {
 	return (
-		<ErrorImageOverlay>
+		<ErrorImageOverLay>
 			<ErrorImageContainer />
-			<ErrorImageText>404: Sorry, This Page is Broken...</ErrorImageText>
+			<ErrorImageText>404: Not Found</ErrorImageText>
 			<ErrorImageText>
 				<a
-					href='https://axon4.com'
+					href='/'
 					// eslint-disable-next-line
 					target='_blank'
-					>
-						<span style={{fontFamily: 'monospace'}}>&gt;&nbsp;axon4.com</span>
+				>
+					<span style={{fontFamily: 'monospace'}}>&gt;&nbsp;ECommerce-Store</span>
 				</a>
 			</ErrorImageText>
-		</ErrorImageOverlay>
+		</ErrorImageOverLay>
 	);
 };
 
-class ErrorBoundary extends React.PureComponent<any, {errorExists:boolean}> {
+class ErrorBoundary extends React.PureComponent<any, {errorExists: boolean}> {
 	constructor() {
 		super({});
 
@@ -28,15 +28,15 @@ class ErrorBoundary extends React.PureComponent<any, {errorExists:boolean}> {
 		};
 	};
 
-	static getDerivedStateFromError(error:Error) {
-		console.log('Error (static GDSFE):', error);
+	static getDerivedStateFromError(error: Error) {
+		console.error('error (static-GDSFE):', error);
 
 		return {errorExists: true};
 	};
 
-	componentDidCatch(error:Error, info:any) {
-		console.log('Error (CDC):', error);
-		console.log('Info:', info);
+	componentDidCatch(error: Error, information: any) {
+		console.error('error (CDC):', error);
+		console.error('information:', information);
 	};
 
 	render() {

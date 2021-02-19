@@ -1,4 +1,4 @@
-const CartActionConsts = {
+const CartActionConstants = {
 	TOGGLE_CART_HIDDEN: 'TOGGLE_CART_HIDDEN',
 	ADD_ITEM: 'ADD_ITEM',
 	SUBTRACT_ITEM: 'SUBTRACT_ITEM',
@@ -6,4 +6,4 @@ const CartActionConsts = {
 	CLEAR_CART: 'CLEAR_CART'
 };
 
-export default CartActionConsts;
+export default CartActionConstants;

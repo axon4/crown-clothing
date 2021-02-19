@@ -1,28 +1,28 @@
 import React from 'react';
 import StripeCheckout, { Token } from 'react-stripe-checkout';
 
-const StripeButton = ({ price }:{ price:number }) => {
+const StripeButton = ({ price }: {price: number}) => {
+	const publishAbleKey = 'pk_test_51HLlkuETZt84p6IuHoN4xiGdpbsVQFvgxlo1xqhd98uk9QEzCJMRiLye6sxRYG3ieFnHlBCuYmKTwLxfxC7eWbRS00zIAhvDjA';
 	const priceForStripe = price * 100;
-	const publishableKey = 'pk_test_51HLlkuETZt84p6IuHoN4xiGdpbsVQFvgxlo1xqhd98uk9QEzCJMRiLye6sxRYG3ieFnHlBCuYmKTwLxfxC7eWbRS00zIAhvDjA';
 
-	const onToken = (token:Token) => {
+	const onToken = (token: Token) => {
 		console.log(token);
-		alert('Payment Successful! (Stripe Token in Console)');
+		alert('Payment Successful (Stripe-Token in ConSole)!');
 	};
 
 	return (
 		<StripeCheckout
-			name='Ecommerce Store'
+			name='ECommerce-Store'
 			label='Pay'
-			panelLabel='Pay Now:&nbsp;'
+			panelLabel='Pay:&nbsp;'
 			image='https://svgshare.com/i/CUz.svg'
-			description={`Your total is: £${price}`}
+			description={`Total: £${price}`}
 			billingAddress
 			shippingAddress
 			currency='GBP'
 			amount={priceForStripe}
 			token={onToken}
-			stripeKey={publishableKey}
+			stripeKey={publishAbleKey}
 		/>
 	);
 };

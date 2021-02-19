@@ -1,22 +1,22 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import ErrorBoundary from '../../components/errorBoundary/ErrorBoundary';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { Route, RouteProps } from 'react-router-dom';
-// import CollectionsOverviewContainer from '../../components/collectionsOverview/CollectionsOverviewContainer';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import ErrorBoundary from '../../components/errorBoundary/ErrorBoundary';
+// import CollectionsOverViewContainer from '../../components/collectionsOverView/CollectionsOverViewContainer';
 // import CollectionPageContainer from '../collection/CollectionPageContainer';
 import Spinner from '../../components/spinner/Spinner';
 import { fetchCollections } from '../../redux/shop/shopActions';
 
-const CollectionsOverviewContainer = lazy(() => import('../../components/collectionsOverview/CollectionsOverviewContainer'));
+const CollectionsOverViewContainer = lazy(() => import('../../components/collectionsOverView/CollectionsOverViewContainer'));
 const CollectionPageContainer = lazy(() => import('../collection/CollectionPageContainer'));
 
 type ShopPageProps = {
-	fetchCollections:() => any,
-	match:RouteProps
+	fetchCollections: () => any,
+	match: RouteProps
 };
 
-const ShopPage = ({ fetchCollections, match }:ShopPageProps) => {
+const ShopPage = ({ fetchCollections, match }: ShopPageProps) => {
 	useEffect(() => {
 		fetchCollections();
 	}, [fetchCollections]);
@@ -25,7 +25,7 @@ const ShopPage = ({ fetchCollections, match }:ShopPageProps) => {
 		<div className='shop-page'>
 			<ErrorBoundary>
 				<Suspense fallback={<Spinner />}>
-					<Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />
+					<Route exact path={`${match.path}`} component={CollectionsOverViewContainer} />
 					<Route path={`${match.path}/:collectionID`} component={CollectionPageContainer} />
 				</Suspense>
 			</ErrorBoundary>
@@ -33,8 +33,8 @@ const ShopPage = ({ fetchCollections, match }:ShopPageProps) => {
 	);
 };
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-	fetchCollections: () => dispatch(fetchCollections())
+const mapDisPatchToProps = (disPatch: Dispatch) => ({
+	fetchCollections: () => disPatch(fetchCollections())
 });
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default connect(null, mapDisPatchToProps)(ShopPage);

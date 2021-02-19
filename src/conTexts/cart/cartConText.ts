@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-const CartContext = createContext({
+const CartConText = createContext({
 	hidden: true,
 	toggleHidden: () => {}
 });
 
-export default CartContext;
+export default CartConText;

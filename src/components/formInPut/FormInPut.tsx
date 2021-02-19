@@ -1,26 +1,26 @@
 import React, { ChangeEvent } from 'react';
-import './FormInput.scss';
+import './FormInPut.scss';
 
-type FormInput = {
-	handleChange:((event: ChangeEvent<HTMLInputElement>) => void);
-	label:string;
-	name:string;
-	type:string;
-	value:string;
-	required:boolean;
+type TFormInPut = {
+	handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+	label: string;
+	name: string;
+	type: string;
+	value: string;
+	required: boolean;
 };
 
-const FormInput = ({ handleChange, label, ...otherProps }:FormInput) => {
+const FormInPut = ({ handleChange, label, ...otherProps }: TFormInPut) => {
 	return (
 		<div className='group'>
 			<input className='form-input' onChange={handleChange} {...otherProps} required />
 			{
 				label
 					? <label className={`${otherProps.value.length ? 'shrink' : ''} form-input-label`}>{label}</label>
-					: null
+				: null
 			}
 		</div>
 	);
 };
 
-export default FormInput;
+export default FormInPut;

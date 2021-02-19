@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import errorImage from '../../assets/broken-mug.png';
 
-export const ErrorImageOverlay = styled.div`
+export const ErrorImageOverLay = styled.div`
 	height: 60vh;
 	width: 100%;
 	display: flex;
@@ -21,5 +21,5 @@ export const ErrorImageContainer = styled.div`
 
 export const ErrorImageText = styled.h2`
 	font-size: 28px;
-	color: #2f8e89;
+	color: #2F8E89;
 `;

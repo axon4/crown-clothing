@@ -1,6 +1,6 @@
 import { takeLatest, all, call, put, } from 'redux-saga/effects';
-import UserActionConsts from './userActionConsts';
-import { auth, googleProvider, createUserProfileDocument, getCurrentUser } from '../../firebase/firebaseUtils';
+import UserActionConstants from './userActionConstants';
+import { authentication, GoogleProvider, createUserProfileDocument, getCurrentUser } from '../../fireBase/fireBase';
 import {
 	logInSuccess,
 	logInFailure,
@@ -10,64 +10,64 @@ import {
 	registerFailure
 } from './userActions';
 
-export function* getSnapshotFromUserAuth(userAuth, additionalData) {
+export function* getSnapShotFromUserAuthentication(user, additionalData) {
 	try {
-		const userReference = yield call(createUserProfileDocument, userAuth, additionalData);
-		const snapshot = yield userReference.get();
-	
-		yield put(logInSuccess({id: snapshot.id, ...snapshot.data()}));
+		const userReference = yield call(createUserProfileDocument, user, additionalData);
+		const snapShot = yield userReference.get();
+
+		yield put(logInSuccess({ID: snapShot.id, ...snapShot.data()}));
 	} catch (error) {
 		yield put(logInFailure(error));
 	};
 };
 
-export function* logInWithEmail({ payload: { email, password } }) {
+export function* logInWithEMail({ payLoad: { eMail, passWord } }) {
 	try {
-		const { user } = yield auth.signInWithEmailAndPassword(email, password);
-		
-		yield getSnapshotFromUserAuth(user);
+		const { user } = yield authentication.signInWithEmailAndPassword(eMail, passWord);
+
+		yield getSnapShotFromUserAuthentication(user);
 	} catch (error) {
 		yield put(logInFailure(error));
 	};
 };
 
-export function* onEmailLogIn() {
-	yield takeLatest(UserActionConsts.EMAIL_LOG_IN_PENDING, logInWithEmail);
+export function* onEMailLogIn() {
+	yield takeLatest(UserActionConstants.EMAIL_LOG_IN_PENDING, logInWithEMail);
 };
 
 export function* logInWithGoogle() {
 	try {
-		const { user } = yield auth.signInWithPopup(googleProvider);
-		
-		yield getSnapshotFromUserAuth(user);
+		const { user } = yield authentication.signInWithPopup(GoogleProvider);
+
+		yield getSnapShotFromUserAuthentication(user);
 	} catch (error) {
 		yield put(logInFailure(error));
 	};
 };
 
 export function* onGoogleLogIn() {
-	yield takeLatest(UserActionConsts.GOOGLE_LOG_IN_PENDING, logInWithGoogle);
+	yield takeLatest(UserActionConstants.GOOGLE_LOG_IN_PENDING, logInWithGoogle);
 };
 
 export function* isUserAuthenticated() {
 	try {
-		const userAuth = yield getCurrentUser();
+		const user = yield getCurrentUser();
 
-		if (!userAuth) {return};
+		if (!user) return;
 
-		yield getSnapshotFromUserAuth(userAuth);
+		yield getSnapShotFromUserAuthentication(user);
 	} catch (error) {
 		yield put(logInFailure(error));
 	};
 };
 
 export function* onCheckUserSession() {
-	yield takeLatest(UserActionConsts.CHECK_USER_SESSION, isUserAuthenticated);
+	yield takeLatest(UserActionConstants.CHECK_USER_SESSION, isUserAuthenticated);
 };
 
 export function* logOut() {
 	try {
-		yield auth.signOut();
+		yield authentication.signOut();
 		yield put(logOutSuccess());
 	} catch (error) {
 		yield put(logOutFailure(error));
@@ -75,12 +75,12 @@ export function* logOut() {
 };
 
 export function* onLogOut() {
-	yield takeLatest(UserActionConsts.LOG_OUT_PENDING, logOut);
+	yield takeLatest(UserActionConstants.LOG_OUT_PENDING, logOut);
 };
 
-export function* register({ payload: { email, password, displayName } }) {
+export function* register({ payLoad: { eMail, passWord, displayName } }) {
 	try {
-		const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+		const { user } = yield authentication.createUserWithEmailAndPassword(eMail, passWord);
 
 		yield put(registerSuccess({ user, additionalData: { displayName } }));
 	} catch (error) {
@@ -89,20 +89,20 @@ export function* register({ payload: { email, password, displayName } }) {
 };
 
 export function* onRegister() {
-	yield takeLatest(UserActionConsts.REGISTER_PENDING, register);
+	yield takeLatest(UserActionConstants.REGISTER_PENDING, register);
 };
 
-export function* logInAfterRegistration({ payload: { user, additionalData } }) {
-	yield getSnapshotFromUserAuth(user, additionalData);
+export function* logInAfterRegistration({ payLoad: { user, additionalData } }) {
+	yield getSnapShotFromUserAuthentication(user, additionalData);
 };
 
 export function* onRegisterSuccess() {
-	yield takeLatest(UserActionConsts.REGISTER_SUCCESS, logInAfterRegistration);
+	yield takeLatest(UserActionConstants.REGISTER_SUCCESS, logInAfterRegistration);
 };
 
 function* userSagas() {
 	yield all([
-		call(onEmailLogIn),
+		call(onEMailLogIn),
 		call(onGoogleLogIn),
 		call(onCheckUserSession),
 		call(onLogOut),

@@ -1,15 +1,15 @@
 import React from 'react';
 import LogIn from '../../components/logIn/LogIn';
 import Register from '../../components/register/Register';
-import './AuthPage.scss';
+import './AuthenticationPage.scss';
 
-const AuthPage = () => {
+const AuthenticationPage = () => {
 	return (
-		<div className='auth-page'>
+		<div className='authentication-page'>
 			<LogIn />
 			<Register />
 		</div>
 	);
 };
 
-export default AuthPage;
+export default AuthenticationPage;

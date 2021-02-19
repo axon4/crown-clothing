@@ -12,7 +12,7 @@ const baseStyles = css`
 	}
 `;
 
-const googleLogInStyles = css`
+const GoogleLogInStyles = css`
 	background-color: #4285F4;
 	color: white;
 
@@ -36,13 +36,13 @@ const invertedStyles = css`
 
 const getButtonStyles = props => {
 	if (props.isGoogleLogIn) {
-		return googleLogInStyles;
+		return GoogleLogInStyles;
 	};
 
 	return props.inverted ? invertedStyles : baseStyles;
 };
 
-export const CustomButtonContainer = styled.button.attrs(props => ({
+export const CustomButtonContainer = styled.button.attrs(() => ({
 	className: 'custom-button'
 }))`
 	min-width: 165px;

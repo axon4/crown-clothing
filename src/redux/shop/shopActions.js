@@ -1,32 +1,30 @@
-import ShopActionConsts from './shopActionConsts';
-// import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebaseUtils';
+import ShopActionConstants from './shopActionConstants';
+// import { fireStore, convertCollectionsSnapShotToMap } from '../../fireBase/fireBase';
 
-export const fetchCollections = () => ({
-	type: ShopActionConsts.FETCH_COLLECTIONS_PENDING
-});
+export const fetchCollections = () => ({type: ShopActionConstants.FETCH_COLLECTIONS_PENDING});
 
 export const fetchCollectionsSuccess = collectionsMap => ({
-	type: ShopActionConsts.FETCH_COLLECTIONS_SUCCESS,
-	payload: collectionsMap
+	type: ShopActionConstants.FETCH_COLLECTIONS_SUCCESS,
+	payLoad: collectionsMap
 });
 
 export const fetchCollectionsFailure = error => ({
-	type: ShopActionConsts.FETCH_COLLECTIONS_FAILURE,
-	payload: error
+	type: ShopActionConstants.FETCH_COLLECTIONS_FAILURE,
+	payLoad: error
 });
 
-// Redux Thunk
+// // Redux Thunk
+// export const fetchCollectionsASynchronously = () => {
+// 	return disPatch => {
+// 		const collectionReference = fireStore.collection('collections');
 
-// export const fetchCollectionsAsync = () => {
-// 	return dispatch => {
-// 		const collectionReference = firestore.collection('collections');
+// 		disPatch(fetchCollections());
 
-// 		dispatch(fetchCollections());
+// 		collectionReference.get().then(snapShot => {
+// 			const collectionsMap = convertCollectionsSnapshotToMap(snapShot);
 
-// 		collectionReference.get().then(snapshot => {
-// 			const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-// 			dispatch(fetchCollectionsSuccess(collectionsMap))
+// 			disPatch(fetchCollectionsSuccess(collectionsMap))
 // 		})
-// 			.catch(error => dispatch(fetchCollectionsFailure(error)));
+// 			.catch(error => disPatch(fetchCollectionsFailure(error)));
 // 	};
 // };

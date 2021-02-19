@@ -1,30 +1,30 @@
-import CartActionConsts from './cartActionConsts';
+import CartActionConstants from './cartActionConstants';
 
 export const toggleCartHidden = () => {
-	return {type: CartActionConsts.TOGGLE_CART_HIDDEN};
+	return {type: CartActionConstants.TOGGLE_CART_HIDDEN};
 };
 
 export const addItem = item => {
 	return {
-		type: CartActionConsts.ADD_ITEM,
-		payload: item
+		type: CartActionConstants.ADD_ITEM,
+		payLoad: item
 	};
 };
 
-export const subtractItem = item => {
+export const subTractItem = item => {
 	return {
-		type: CartActionConsts.SUBTRACT_ITEM,
-		payload: item
+		type: CartActionConstants.SUBTRACT_ITEM,
+		payLoad: item
 	};
 };
 
-export const removeItemFromCart = item => {
+export const reMoveItemFromCart = item => {
 	return {
-		type: CartActionConsts.REMOVE_ITEM_FROM_CART,
-		payload: item
+		type: CartActionConstants.REMOVE_ITEM_FROM_CART,
+		payLoad: item
 	};
 };
 
 export const clearCart = () => {
-	return {type: CartActionConsts.CLEAR_CART};
+	return {type: CartActionConstants.CLEAR_CART};
 };

@@ -1,14 +1,14 @@
 import React from 'react';
-import firebase from '../../firebase/firebaseUtils';
-import './CustomButton.scss';
+import fireBase from '../../fireBase/fireBase';
 import { CustomButtonContainer } from './CustomButtonStyles';
+import './CustomButton.scss';
 
 type CustomButtonProps = {
-	type?:'submit' | 'button';
-	children:React.ReactNode;
-	isGoogleLogIn?:boolean;
-	inverted?:boolean;
-	onClick?:() => Promise<firebase.auth.UserCredential> | void;
+	type?: 'submit' | 'button';
+	children: React.ReactNode;
+	isGoogleLogIn?: boolean;
+	inverted?: boolean;
+	onClick?: () => Promise<fireBase.auth.UserCredential> | void;
 };
 
 // const CustomButton = ({ children, isGoogleLogIn, inverted, ...otherProps }:CustomButtonProps) => {
@@ -17,14 +17,14 @@ type CustomButtonProps = {
 // 				`${isGoogleLogIn ? 'google-log-in' : ''}
 // 				${inverted ? 'inverted' : ''}
 // 				custom-button`
-// 				}
+// 			}
 // 			{...otherProps}>
 // 			{children}
 // 		</button>
 // 	);
 // };
 
-const CustomButton = ({ children, ...props }:CustomButtonProps) => {
+const CustomButton = ({ children, ...props }: CustomButtonProps) => {
 	return (
 		<CustomButtonContainer {...props}>
 			{children}

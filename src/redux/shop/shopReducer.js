@@ -1,4 +1,4 @@
-import ShopActionConsts from './shopActionConsts';
+import ShopActionConstants from './shopActionConstants';
 
 const INITIAL_STATE = {
 	collections: null,
@@ -6,25 +6,28 @@ const INITIAL_STATE = {
 	error: ''
 };
 
-const shopReducer = (state=INITIAL_STATE, action) => {
+const shopReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case ShopActionConsts.FETCH_COLLECTIONS_PENDING:
+		case ShopActionConstants.FETCH_COLLECTIONS_PENDING:
 			return {
 				...state,
 				isFetching: true
 			};
-		case ShopActionConsts.FETCH_COLLECTIONS_SUCCESS:
+
+		case ShopActionConstants.FETCH_COLLECTIONS_SUCCESS:
 			return {
 				...state,
 				isFetching: false,
-				collections: action.payload
+				collections: action.payLoad
 			};
-		case ShopActionConsts.FETCH_COLLECTIONS_FAILURE:
+
+		case ShopActionConstants.FETCH_COLLECTIONS_FAILURE:
 			return {
 				...state,
 				isFetching: false,
-				error: action.payload
-			}
+				error: action.payLoad
+			};
+
 		default:
 			return state;
 	};

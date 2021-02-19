@@ -1,20 +1,21 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../../providers/cart/CartProvider';
+import { CartConText } from '../../providers/cart/CartProvider';
 import CustomButton from '../../components/customButton/CustomButton';
 import './CollectionItem.scss';
 
-const CollectionItem = ({ item }:{ item:any }) => {
+const CollectionItem = ({ item }: {item: any}) => {
+	const { addItem } = useContext(CartConText);
+
 	const { name, price, imageURL } = item;
-	const { addItem } = useContext(CartContext);
 
 	return (
 		<div className='collection-item'>
-			<div className='image' style={{backgroundImage: `url(${imageURL})`}}></div>
+			<div style={{backgroundImage: `url(${imageURL})`}} className='image'></div>
 			<div className='collection-footer'>
 				<span className='name'>{name}</span>
 				<span className='price'>{price}</span>
 			</div>
-			<CustomButton onClick={() => addItem(item)} inverted>Add to Cart</CustomButton>
+			<CustomButton onClick={() => {addItem(item)}} inverted>Add-to-Cart</CustomButton>
 		</div>
 	);
 };
