@@ -1,6 +1,6 @@
 {
-	"short_name": "ECommerce Store",
-	"name": "ECommerce Store",
+	"short_name": "ECommerce-Store",
+	"name": "ECommerce-Store",
 	"icons": [
 		{
 			"src": "favicon.ico",
@@ -18,7 +18,7 @@
 			"sizes": "512x512"
 		}
 	],
-	"start_url": "/ecommerce-store/",
+	"start_url": "/eCommerce-store/",
 	"display": "standalone",
 	"theme_color": "#000000",
 	"background_color": "#FFFFFF"
