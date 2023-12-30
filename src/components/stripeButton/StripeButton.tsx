@@ -6,16 +6,16 @@ const StripeButton = ({ price }: {price: number}) => {
 	const priceForStripe = price * 100;
 
 	const onToken = (token: Token) => {
-		console.log(token);
+		console.log('token:', token);
 		alert('Payment Successful (Stripe-Token in ConSole)!');
 	};
 
 	return (
 		<StripeCheckout
-			name='ECommerce-Store'
+			name='Crown Clothing'
 			label='Pay'
 			panelLabel='Pay:&nbsp;'
-			image='https://svgshare.com/i/CUz.svg'
+			image='../../assets/crown.svg'
 			description={`Total: £${price}`}
 			billingAddress
 			shippingAddress

@@ -12,7 +12,7 @@ export const ErrorMessage = () => {
 					// eslint-disable-next-line
 					target='_blank'
 				>
-					<span style={{fontFamily: 'monospace'}}>&gt;&nbsp;ECommerce-Store</span>
+					<span style={{fontFamily: 'monospace'}}>&gt;&nbsp;Crown Clothing</span>
 				</a>
 			</ErrorImageText>
 		</ErrorImageOverLay>

@@ -1,6 +1,6 @@
 {
-	"short_name": "ECommerce-Store",
-	"name": "ECommerce-Store",
+	"short_name": "Crown Clothing",
+	"name": "Crown Clothing",
 	"icons": [
 		{
 			"src": "favicon.ico",
@@ -18,7 +18,7 @@
 			"sizes": "512x512"
 		}
 	],
-	"start_url": "/eCommerce-store/",
+	"start_url": "/crown-clothing/",
 	"display": "standalone",
 	"theme_color": "#000000",
 	"background_color": "#FFFFFF"

@@ -56,7 +56,7 @@ class Application extends React.Component<any> {
 					<ErrorBoundary>
 						<Route exact path='/' component={HomePage} />
 						{/* GitHub-Pages--reDirect */}
-						{/* <Route exact path='/eCommerce-store' render={() => <Redirect to='/' />} /> */}
+						{/* <Route exact path='/crown-clothing' render={() => <Redirect to='/' />} /> */}
 						<Route path='/conTact' component={ConTactPage} />
 						<Suspense fallback={<Spinner />}>
 							<Route path='/shop' component={ShopPage} />

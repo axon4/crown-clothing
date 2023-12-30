@@ -1,7 +1,7 @@
 {
-	"name": "eCommerce-store",
+	"name": "crown-clothing",
 	"version": "0.0.1",
-	"homepage": "https://axon4.github.io/eCommerce-store/",
+	"homepage": "https://axon4.github.io/crown-clothing/",
 	"private": true,
 	"scripts": {
 		"start": "react-scripts start",

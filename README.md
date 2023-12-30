@@ -1,4 +1,4 @@
-# ECommerce-Store
+# Crown Clothing
 
 * complete eCommerce-store with authentication, routing, state-persistence, and payment-handling
 * mobile-responsive so you can shop on-the-go
